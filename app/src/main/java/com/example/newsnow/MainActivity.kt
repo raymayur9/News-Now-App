@@ -3,6 +3,7 @@ package com.example.newsnow
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import com.android.volley.toolbox.JsonObjectRequest
@@ -20,10 +21,12 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         var url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=17922da4d5bb4b23b8a02bb57e31a6ca"
         fetchData(url)
         binding.all.setOnClickListener{
+//            binding.progressBar.visibility = View.VISIBLE
             url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=17922da4d5bb4b23b8a02bb57e31a6ca"
             fetchData(url)
         }
         binding.business.setOnClickListener{
+//            binding.progressBar.visibility = View.VISIBLE
             url = "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=17922da4d5bb4b23b8a02bb57e31a6ca"
             fetchData(url)
         }
@@ -31,10 +34,7 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
             url = "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=17922da4d5bb4b23b8a02bb57e31a6ca"
             fetchData(url)
         }
-        binding.general.setOnClickListener{
-            url = "https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=17922da4d5bb4b23b8a02bb57e31a6ca"
-            fetchData(url)
-        }
+
         binding.health.setOnClickListener{
             url = "https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=17922da4d5bb4b23b8a02bb57e31a6ca"
             fetchData(url)
@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
     }
 
     private fun fetchData(url: String) {
+        binding.recyclerView.visibility = View.GONE
+        binding.progressBar.visibility = View.VISIBLE
         val jsonObjectRequest = object : JsonObjectRequest(
             Method.GET, url, null,
             {
@@ -72,8 +74,13 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
                     newsArray.add(news)
                 }
                 mAdapter.updateNews(newsArray)
+                binding.progressBar.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
             },
-            {Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show() })
+            {
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(this, "Something went wrong!", Toast.LENGTH_LONG).show()
+            })
 
         {
             override fun getHeaders(): MutableMap<String, String> {
