@@ -1,20 +1,14 @@
 package com.example.newsfresh
 
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 
 class ItemAdapter(
-    private val context: Context,
     private val listener: NewsItemClicked
 ): RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
@@ -51,6 +45,7 @@ class ItemAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         holder.title.text = item.title
+        if (item.author=="null") item.author = ""
         holder.author.text = item.author
         Glide.with(holder.itemView.context).load(item.imageUrl).into(holder.image)
     }
