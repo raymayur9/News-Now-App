@@ -1,4 +1,4 @@
-package com.example.newsfresh
+package com.example.newsnow
 
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.newsfresh.databinding.ActivityMainBinding
+import com.example.newsnow.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), NewsItemClicked {
 

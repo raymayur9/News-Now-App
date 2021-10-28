@@ -1,4 +1,4 @@
-package com.example.newsfresh
+package com.example.newsnow
 
 import org.junit.Test
 
