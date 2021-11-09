@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_twotone_share_24.xml" value="0.3" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2536231884057971" />
+        <entry key="app/src/main/res/layout/item_button.xml" value="0.2658514492753623" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.271286231884058" />
       </map>
     </option>

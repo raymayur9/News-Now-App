@@ -107,4 +107,9 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         val chooser = Intent.createChooser(intent, "Share this news using...")
         startActivity(chooser)
     }
+
+    override fun onTopClicked() {
+//        Toast.makeText(this, "Button clicked", Toast.LENGTH_LONG).show()
+        binding.recyclerView.smoothScrollToPosition(0)
+    }
 }
