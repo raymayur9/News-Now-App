@@ -1,12 +1,12 @@
 package com.example.newsnow
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -27,7 +27,8 @@ class ItemAdapter(
         val title: TextView = view.findViewById(R.id.title)
         val image: ImageView = view.findViewById(R.id.image)
         val author: TextView = view.findViewById(R.id.author)
-        val progressBar:ProgressBar = view.findViewById(R.id.progressBarCard)
+        val progressBar: ProgressBar = view.findViewById(R.id.progressBarCard)
+        val shareButton: ImageButton = view.findViewById(R.id.share)
     }
 
     /**
@@ -76,6 +77,10 @@ class ItemAdapter(
             }
 
         }).into(holder.image)
+
+        holder.shareButton.setOnClickListener{
+            listener.onShareClicked(item)
+        }
     }
 
     /**
@@ -94,4 +99,5 @@ class ItemAdapter(
 
 interface NewsItemClicked {
     fun onItemClicked(item: News)
+    fun onShareClicked(item: News)
 }

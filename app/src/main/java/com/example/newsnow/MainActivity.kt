@@ -1,11 +1,13 @@
 package com.example.newsnow
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.newsnow.databinding.ActivityMainBinding
 
@@ -97,5 +99,12 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(item.url))
+    }
+    override fun onShareClicked(item: News) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, "${item.title}\n${item.url}")
+        val chooser = Intent.createChooser(intent, "Share this news using...")
+        startActivity(chooser)
     }
 }
